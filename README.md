@@ -19,3 +19,4 @@ I'm a Software Engineer interested in web development, machine learning, and ope
 ## Contact
 
 You can reach me at [email@example.com](mailto:email@example.com) or on [LinkedIn](https://www.linkedin.com/in/username/).
+
