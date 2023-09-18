@@ -22,7 +22,7 @@ Hi it me I still need to fill this out
 
 ## CTFS
 
-- [CTFs](https://github.com/CncurNoCmnt/CncurNoCmnt.github.io/tree/main/CTF/Bandit.md): The Bandit wargame is aimed at absolute beginners. It will teach the basics needed to be able to play other wargames.
+- [Bandit](https://github.com/CncurNoCmnt/CncurNoCmnt.github.io/tree/main/CTF/Bandit.md): The Bandit wargame is aimed at absolute beginners. It will teach the basics needed to be able to play other wargames.
 - [Project 2](https://github.com/username/project2): Description
 
 ## Contact
