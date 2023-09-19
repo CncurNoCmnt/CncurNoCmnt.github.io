@@ -70,8 +70,7 @@ ls
 cd inhere
 ls
 find . -type f -exec file {} \; | grep 'ASCI text'
-*
-cat ./\-file07
+cat ./-file07
 logout
 ```
 Notes
@@ -96,13 +95,19 @@ after you run the command ./-file07 will be identified as the ASCII text file. y
 ssh bandit5@bandit.labs.overthewire.org -p 2220
 ls
 cd inhere
-find -size 1033c ! -executable
-find -type f -size 1033c ! -executable -exec file {} + 
-cd maybehere07
-ls -a
-cat \.file2
+find -size 1033c
+cat ./maybehere07/.file2
 logout
 ```
+Note
+
+**find -size 1033c**: This command uses the find utility to search for files in the current directory (and subdirectories) that have a size of exactly 1033 bytes. The c after the number signifies that the size is specified in bytes. This is how I solved this level, but there is more than one way I will list other options below: 
+
+  Option 1: Using file command on each file
+  You can manually check the file type of each file in the directory using the file    command: " ./* " This should output the type of each file, allowing you to      
+  identify the human-readable one manually.
+  
+  Option 2: Use find with -exec and cat: find . -type f -exec cat {} + You can try to cat (concatenate and display) the content of each file. If the content is human-readable, it will display normally; otherwise, it will display  gibberish or escape sequences.
 
 > ### Key : P4L4vucdmLnm8I7Vl7jG1ApGSfjYKqJU
 
