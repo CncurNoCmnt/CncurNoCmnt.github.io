@@ -119,9 +119,10 @@ ssh bandit6@bandit.labs.overthewire.org -p 2220
 ls
 cd /
 find -size 33c -user bandit7 -group bandit6
-cat /var/lib/dpkg/info/bandit7\.password
+cat /var/lib/dpkg/info/bandit7\.passwordin
 logout
 ```
+Note: I tired to use the find command once I first entered the box it did not find anything. you can only look in the current directory. either way you are given the variables in this box if you do not understand how to use the find commnad it is always useful to use --help or just chat GPT...
 
 > ### Key : z7WtoNQU2XfjmMtWA8u5rN4vzqu4v99S
 
@@ -131,9 +132,10 @@ logout
 ssh bandit7@bandit.labs.overthewire.org -p 2220
 ls
 cat data.txt
-grep -i millionth data.txt
+grep -i millionth data.txt or grep -a 
 logout
 ```
+Note: Grep -i or grep -a will  work, why not try both!  grep is employed for searching plain-text data sets for lines that match a regular expression. By default, it prints the matching lines to the standard output, which is usually the terminal window. For more information you can use man grep or grep --help 
 
 > ### Key : TESKZC0XvTetK0S9xNwm25STk5iWrBvP
 
@@ -146,6 +148,9 @@ ls
 sort data.txt | uniq -u
 logout
 ```
+Note: sort data.txt: This sorts all lines in the file data.txt.
+|: The pipe operator redirects the sorted output as input to the next command.
+uniq -u: This removes adjacent duplicate lines from the sorted input and only outputs lines that appear exactly once. Basisically what is happening here is we are going to sort the information and use pipe to input this sorted information into uniq -u which will remove duplicated only leaving the password for the next level. 
 
 > ### Key : EN632PlfYiZbn3PhVK3XOGSlNInNE00t
 
@@ -158,6 +163,12 @@ ls
 strings data.txt | grep ==
 logout
 ```
+Note:strings data.txt: The strings command extracts printable strings from files, in this case, data.txt. This is particularly useful for binary files where text strings are embedded amongst non-printable characters. For purely text files, strings would essentially just read the file line by line.
+
+|: The pipe (|) takes the output of strings data.txt and uses it as input for the next command.
+
+grep '==': The grep command then searches through this input to find and display lines that contain the sequence ==.
+You could also just go through the file and find the lines if you wanted to 
 
 > ### Key : G7w8LIi6J3kTb8A7j9LgrywtEUlyyp6s
 
@@ -170,7 +181,8 @@ ls
 base64 -d data.txt
 logout
 ```
-
+Note: Basically all we are doing on this level is useing base64 -d for decode to decode the file and it will return the password. again if you need to learn more man base64 or base64 --help to see options and information on this command.
+cat 
 > ### Key : 6zPeziLdR2RKNdNYFNb6nVCKzphlXHBM
 
 
@@ -179,9 +191,22 @@ logout
 ```
 ssh bandit11@bandit.labs.overthewire.org -p 2220
 ls
-cat data.txt | tr [N-ZA-M] [A-Z] | tr [a-z] [n-za-m]
+cat data.txt | tr 'A-Za-z' 'N-ZA-Mn-za-m'
 logout
 ```
+The sets 'A-Za-z' and 'N-ZA-Mn-za-m' are used for character translation in the tr command. They define the mapping of characters from the input to the output. Let's break down what these sets mean:
+
+The Input Set: 'A-Za-z'
+A-Z: This represents all uppercase alphabets from A to Z.
+a-z: This represents all lowercase alphabets from a to z.
+Together, A-Za-z represents all alphabets, both uppercase and lowercase. The tr command will look for these characters in the input.
+
+The Output Set: 'N-ZA-Mn-za-m'
+N-Z: This represents all uppercase alphabets from N to Z.
+A-M: This represents all uppercase alphabets from A to M.
+n-z: This represents all lowercase alphabets from n to z.
+a-m: This represents all lowercase alphabets from a to m.
+Notice that N-ZA-M is just A-Z rearranged, and n-za-m is a-z rearranged. This is the essence of the ROT13 cipher, which shifts each letter 13 positions down the alphabet.
 
 > ### Key : JVNBBFSmZwKKOP0XbFXOoW8chDz5yVRv
 
